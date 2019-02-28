@@ -20,14 +20,15 @@ public static class BattleHandler
         //using float
         float outcome = 0;
 
-        // my code between here
+        // Debug log will show the player stats and NPC
 
-        Debug.Log(data.npc.rhythm);
-        Debug.Log(data.npc.style);
-        Debug.Log(data.npc.luck);
-        Debug.Log(data.player.style); //combine them add or times them
-        Debug.Log(data.player.luck); //random role
-        Debug.Log(data.player.rhythm); // combine them add or times them
+        Debug.Log("The NPC Rhythm stats is " + data.npc.rhythm);
+        Debug.Log("The NPC Style stats is " + data.npc.style);
+        Debug.Log("The NPC Luck stats is " + data.npc.luck);
+        Debug.Log("The Player Style stats is " + data.player.style); //combine them add or times them
+        Debug.Log("The Player Luck stats is " + data.player.luck); //random role
+        Debug.Log("The Player Rhythm stats is " + data.player.rhythm); // combine them add or times them
+        
 
         // if the player has a higher style then the NPC then the player will add 1 to the player_has_one score
         int player_has_won = 0;
@@ -43,10 +44,14 @@ public static class BattleHandler
             player_has_won += 1;
 
         //random outcome with a muliplyer
+        int player_boost = Random.Range(1, 101);
+        int npc_boost = Random.Range(1, 101);
+        if (1.5 * player_boost > 1.5 * npc_boost)
+            player_has_won += 1;
 
-        if (data.random_boost >= 80)
-            Stats.luck * 1.5;
-         
+        Debug.Log("the player boost " + player_boost);
+        Debug.Log("the npc boost " + npc_boost);
+
         //the outcome of the battle
         if (player_has_won >= 2)
             outcome = 1; 
